@@ -10,6 +10,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
@@ -71,6 +72,7 @@ public class StaticSpawnMod
         event.setResult(Event.Result.DENY);
     }
 
+    /*
     @SubscribeEvent
     public void buryMonsters(LivingSpawnEvent.SpecialSpawn event) {
         if (event.getSpawnReason() != SpawnReason.CHUNK_GENERATION) {
@@ -78,6 +80,9 @@ public class StaticSpawnMod
             LOGGER.info("Non-worldgen spawn");
             return;
         }
+    */
+    @SubscribeEvent
+    public void buryMonsters(EntityJoinWorldEvent event) {
         Entity rawEntity = event.getEntity();
         if (!(rawEntity instanceof MonsterEntity)) {
             // Not a monster.
